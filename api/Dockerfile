@@ -1,4 +1,4 @@
-ROM python:3.8-alpine
+FROM python:3.8-alpine as api
 RUN apk update && apk add bash
 RUN apk update && apk add postgresql-dev gcc python3-dev musl-dev
 RUN apk upgrade && apk add --no-cache --virtual build-dependencies linux-headers postgresql-client \
@@ -12,16 +12,14 @@ ENV PYTHONUNBUFFERED 1
 
 
 # create root directory for our project in the container
-RUN mkdir /api
+RUN mkdir /git_api
 
 # Set the working directory to /api
-WORKDIR /api
+WORKDIR /git_api
 
 # Copy the current directory contents into the container at /api
-ADD . /api/
+ADD ./api /git_api/
 
 # Install any needed packages specified in requirements.txt
-RUN pip install -r requirements/develop.txt
-
-CMD python manage.py runserver 0.0.0.0:8000
+RUN pip install -r requirements/local.txt
 
