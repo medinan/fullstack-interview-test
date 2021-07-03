@@ -1,5 +1,7 @@
 from rest_framework import serializers
 
+from ..models import PullRequest
+
 
 class BranchSerializer(serializers.Serializer):
     name = serializers.CharField(max_length=100)
@@ -18,4 +20,16 @@ class CommitSerializer(serializers.Serializer):
 class BranchDetailSerializer(serializers.Serializer):
     name = serializers.CharField(max_length=100)
     commits = CommitSerializer(many=True)
+
+
+class PullRequestSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = PullRequest
+        fields = [
+            "title",
+            "author",
+            "description",
+            "status"
+        ]
 
