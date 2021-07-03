@@ -2,3 +2,4 @@
 -r test.txt
 
 isort==5.9.1
+coreapi==2.3.3
