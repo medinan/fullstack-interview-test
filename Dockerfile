@@ -6,6 +6,7 @@ RUN apk upgrade && apk add --no-cache --virtual build-dependencies linux-headers
 postgresql-dev linux-headers make gcc g++ libffi-dev libxml2-dev libxslt-dev libldap \
 libsasl jpeg-dev zlib-dev freetype-dev lcms2-dev openjpeg-dev tiff-dev \
 tk-dev tcl-dev && rm -rf /var/cache/apk/*
+RUN apk add git
 
 WORKDIR /home/api/
 COPY api/requirements ./requirements
