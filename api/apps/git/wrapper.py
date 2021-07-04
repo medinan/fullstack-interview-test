@@ -13,8 +13,8 @@ class GitWrapper(Repository):
                 remote_refs = git.repo.remote().fetch()
                 return [
                     {
-                        "name": refs.name,
-                        "safe": refs.name.replace("/", "-")
+                        "source": refs.name.split("/")[0],
+                        "name": refs.name.split("/")[1],
                     }
                     for refs in remote_refs
                 ]

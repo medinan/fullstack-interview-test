@@ -4,8 +4,8 @@ from ..models import PullRequest
 
 
 class BranchSerializer(serializers.Serializer):
+    source = serializers.CharField(max_length=100)
     name = serializers.CharField(max_length=100)
-    safe = serializers.CharField(max_length=100)
 
 
 class CommitSerializer(serializers.Serializer):

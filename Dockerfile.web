@@ -6,5 +6,4 @@ COPY frontend/package.json /home/frontend/
 COPY frontend/yarn.lock /home/frontend/
 RUN yarn install
 COPY ./frontend ./frontend/
-ENV HOST 0.0.0.0
 EXPOSE 3000

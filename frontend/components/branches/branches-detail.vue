@@ -13,7 +13,8 @@
         <div class="container">
           <nav class="breadcrumb">
             <a class="breadcrumb-item" href="#">Home</a>
-            <span class="breadcrumb-item active">branches</span>
+            <a class="breadcrumb-item" href="#">Branches</a>
+            <a class="breadcrumb-item active" href="#">{{ source }}/{{ branch }}</a>
           </nav>
           <table class="table">
             <thead>
@@ -24,7 +25,7 @@
             </tr>
             </thead>
             <tbody>
-              <tr v-for="branch in branches">
+              <tr v-for="branch in commits">
                 <td>{{branch.source}}</td>
                 <td>{{branch.name}}</td>
                 <td><NuxtLink :to="'/branches/' + branch.source + '/' + branch.name">view detail</NuxtLink></td>
@@ -45,28 +46,18 @@
 <script>
 
   export default {
-    name: "PullRequestList",
-    mounted: function () {
-      this.getBranches();
-      console.log('mounted: got here')
-    },
+    name: "BranchDetail",
+    props: ["source", "branch"],
     data: function () {
       return {
-        branches: []
+        commits: [
+          {
+            "commit": "dfsfsff"
+          }
+        ]
       }
     },
     methods: {
-      getBranches: function () {
-        const url = "/api/v1/branches/"
-        let self = this;
-        this.$axios.get(url, {
-          dataType: "json",
-          headers: {"Content-type": "application/json"}
-        }).then(function (response) {
-          console.log(response.data);
-          self.branches = response.data;
-        })
-      }
     }
   }
 </script>
