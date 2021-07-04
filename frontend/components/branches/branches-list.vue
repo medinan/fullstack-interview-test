@@ -48,7 +48,6 @@
     name: "PullRequestList",
     mounted: function () {
       this.getBranches();
-      console.log('mounted: got here')
     },
     data: function () {
       return {

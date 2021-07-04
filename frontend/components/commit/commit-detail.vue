@@ -14,7 +14,8 @@
           <nav class="breadcrumb">
             <a class="breadcrumb-item" href="#">Home</a>
             <a class="breadcrumb-item" href="#">Branches</a>
-            <a class="breadcrumb-item active" href="#">{{ source }}/{{ branch }}</a>
+            <a class="breadcrumb-item" href="#">{{ source }}/{{ branch }}</a>
+            <a class="breadcrumb-item active" href="#">{{ commit }}</a>
           </nav>
           <table class="table">
             <thead>
@@ -24,17 +25,15 @@
               <th scope="col">author</th>
               <th scope="col">email</th>
               <th scope="col">date</th>
-              <th scope="col">actions</th>
             </tr>
             </thead>
             <tbody>
-              <tr v-for="commit in details.commits">
-                <td>{{commit.hash}}</td>
-                <td>{{commit.message}}</td>
-                <td>{{commit.author}}</td>
-                <td>{{commit.email}}</td>
-                <td>{{commit.date}}</td>
-                <td><NuxtLink :to="'/branches/' + source + '/' + branch + '/' + commit.hash ">view detail</NuxtLink></td>
+              <tr>
+                <td>{{details.hash}}</td>
+                <td>{{details.message}}</td>
+                <td>{{details.author}}</td>
+                <td>{{details.email}}</td>
+                <td>{{details.date}}</td>
               </tr>
 
             </tbody>
@@ -52,8 +51,8 @@
 <script>
 
   export default {
-    name: "BranchDetail",
-    props: ["source", "branch"],
+    name: "CommitDetail",
+    props: ["source", "branch", "commit"],
     mounted: function () {
       this.getCommits();
     },
@@ -64,7 +63,7 @@
     },
     methods: {
       getCommits: function () {
-        const url = "/api/v1/branches/" + this.source + "-" + this.branch
+        const url = "/api/v1/branches/" + this.source + "-" + this.branch + "/commits/" + this.commit
         let self = this;
         this.$axios.get(url, {
           dataType: "json",
