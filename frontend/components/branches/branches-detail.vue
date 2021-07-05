@@ -62,7 +62,7 @@
     },
     methods: {
       getCommits: function () {
-        const url = "/api/v1/branches/" + this.source + "-" + this.branch
+        const url = "/api/v1/branches/" + this.source + "_" + this.branch
         let self = this;
         this.$axios.get(url, {
           dataType: "json",

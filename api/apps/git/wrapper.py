@@ -1,7 +1,5 @@
-import logging
 from pydriller import Repository
-
-logger = logging.getLogger(__name__)
+from django.utils.text import slugify
 
 
 class GitWrapper(Repository):
@@ -9,15 +7,19 @@ class GitWrapper(Repository):
     def get_branches(self):
         for path_repo in self._conf.get('path_to_repos'):
             with self._prep_repo(path_repo=path_repo) as git:
-                logger.info('Analyzing git repository in %s', git.path)
                 remote_refs = git.repo.remote().fetch()
-                return [
-                    {
-                        "source": refs.name.split("/")[0],
-                        "name": "/".join(refs.name.split("/")[1:]),
-                    }
-                    for refs in remote_refs
-                ]
+                result = []
+                for refs in remote_refs:
+                    split_name = refs.name.split("/")
+                    source = split_name.pop(0)
+                    name = "/".join(split_name).replace("/", "_")
+                    result.append(
+                        {
+                            "source": source,
+                            "name": name,
+                        }
+                    )
+                return result
 
     def get_commits(self):
         commits = self.traverse_commits()

@@ -32,7 +32,7 @@ class BranchViewSet(ViewSet, GitMixin):
         return Response(serializer.data)
 
     def retrieve(self, request, pk=None):
-        branch = pk.replace("-", "/")
+        branch = pk.replace("_", "/")
         git_manager = self.get_git_wrapper(self.get_repository_url(), only_in_branch=branch)
         commits = git_manager.get_commits()
         data = {"name": branch, "commits": commits}
@@ -52,7 +52,7 @@ class CommitViewSet(ViewSet, GitMixin):
         return serializer_class(*args, **kwargs)
 
     def retrieve(self, request, branch_pk=None, pk=None):
-        branch = branch_pk.replace("-", "/")
+        branch = branch_pk.replace("_", "/")
         git_manager = self.get_git_wrapper(
             self.get_repository_url(), only_in_branch=branch, only_commits=[pk, ]
         )
