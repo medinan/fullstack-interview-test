@@ -15,14 +15,12 @@ class BranchViewSet(ViewSet, GitMixin):
     serializer_detail_class = BranchDetailSerializer
 
     def get_serializer_class(self):
-        print(self.action)
         if self.action == "retrieve":
             return self.serializer_detail_class
         return self.serializer_class
 
     def get_serializer(self, *args, **kwargs):
         serializer_class = self.get_serializer_class()
-        print(serializer_class)
         return serializer_class(*args, **kwargs)
 
     def list(self, request, *args, **kwargs):

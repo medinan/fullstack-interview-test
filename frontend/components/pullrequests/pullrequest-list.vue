@@ -69,7 +69,6 @@
           dataType: "json",
           headers: {"Content-type": "application/json"}
         }).then(function (response) {
-          console.log(response.data);
           self.pullrequests = response.data;
         })
       },
@@ -77,7 +76,6 @@
         let item = this.pullrequests[index]
         const url = "/api/v1/pullrequests/" + item.pk + "/close/"
         let self = this;
-        console.log(this.pullrequests[index]);
         this.$axios.put(url, {
           dataType: "json",
           headers: {"Content-type": "application/json"}
