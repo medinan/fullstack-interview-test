@@ -9,7 +9,7 @@
               <span></span>
             </div>
             <div class="header-logo">
-              <a href="index.html">
+              <a href="/">
                 <img v-bind:src="require('../assets/img/logo-white.svg')" alt="Home">
               </a>
             </div>
@@ -17,10 +17,10 @@
               <div class="primary-nav-wrapper">
                 <ul class="nav">
                   <li class="nav-item">
-                    <a href="#" class="nav-link active">Branches</a>
+                    <a href="/branches/" class="nav-link active">Branches</a>
                   </li>
                   <li class="nav-item">
-                    <a href="#" class="nav-link active">Pull request</a>
+                    <a href="/pullrequests/" class="nav-link active">Pull request</a>
                   </li>
                 </ul>
               </div>

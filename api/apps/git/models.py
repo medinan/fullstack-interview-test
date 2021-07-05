@@ -10,5 +10,7 @@ class PullRequest(models.Model):
 
     title = models.CharField(max_length=250)
     author = models.CharField(max_length=100)
+    branch_base = models.CharField(max_length=100)
+    branch_compare = models.CharField(max_length=100)
     description = models.TextField()
     status = models.CharField(max_length=50, choices=StatusPullRequest.choices, default=StatusPullRequest.OPEN)

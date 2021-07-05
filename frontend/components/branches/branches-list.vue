@@ -12,7 +12,7 @@
         <!-- /.page-title -->
         <div class="container">
           <nav class="breadcrumb">
-            <a class="breadcrumb-item" href="#">Home</a>
+            <a class="breadcrumb-item" href="/">Home</a>
             <span class="breadcrumb-item active">branches</span>
           </nav>
           <table class="table">
@@ -45,7 +45,7 @@
 <script>
 
   export default {
-    name: "PullRequestList",
+    name: "BranchesList",
     mounted: function () {
       this.getBranches();
     },

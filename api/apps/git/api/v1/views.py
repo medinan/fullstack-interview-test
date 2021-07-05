@@ -4,6 +4,8 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet, ViewSet
 
+from urllib import parse
+
 from ..mixins import GitMixin
 from ..serializers import BranchSerializer, BranchDetailSerializer, CommitSerializer, PullRequestSerializer
 from ...models import PullRequest

@@ -14,7 +14,7 @@ class CommitSerializer(serializers.Serializer):
     author = serializers.CharField(max_length=100)
     email = serializers.EmailField(max_length=100)
     date = serializers.DateTimeField()
-    files = serializers.IntegerField()
+    files = serializers.CharField(max_length=100)
 
 
 class BranchDetailSerializer(serializers.Serializer):
@@ -29,6 +29,8 @@ class PullRequestSerializer(serializers.ModelSerializer):
         fields = [
             "title",
             "author",
+            "branch_base",
+            "branch_compare",
             "description",
             "status"
         ]

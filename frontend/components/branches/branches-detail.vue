@@ -12,8 +12,8 @@
         <!-- /.page-title -->
         <div class="container">
           <nav class="breadcrumb">
-            <a class="breadcrumb-item" href="#">Home</a>
-            <a class="breadcrumb-item" href="#">Branches</a>
+            <a class="breadcrumb-item" href="/">Home</a>
+            <a class="breadcrumb-item" href="/branches/">Branches</a>
             <a class="breadcrumb-item active" href="#">{{ source }}/{{ branch }}</a>
           </nav>
           <table class="table">
@@ -22,7 +22,6 @@
               <th scope="col">hash</th>
               <th scope="col">message</th>
               <th scope="col">author</th>
-              <th scope="col">email</th>
               <th scope="col">date</th>
               <th scope="col">actions</th>
             </tr>
@@ -32,7 +31,6 @@
                 <td>{{commit.hash}}</td>
                 <td>{{commit.message}}</td>
                 <td>{{commit.author}}</td>
-                <td>{{commit.email}}</td>
                 <td>{{commit.date}}</td>
                 <td><NuxtLink :to="'/branches/' + source + '/' + branch + '/' + commit.hash ">view detail</NuxtLink></td>
               </tr>

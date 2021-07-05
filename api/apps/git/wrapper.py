@@ -14,7 +14,7 @@ class GitWrapper(Repository):
                 return [
                     {
                         "source": refs.name.split("/")[0],
-                        "name": refs.name.split("/")[1],
+                        "name": "/".join(refs.name.split("/")[1:]),
                     }
                     for refs in remote_refs
                 ]
@@ -28,7 +28,7 @@ class GitWrapper(Repository):
                 "author": commit.author.name,
                 "email": commit.author.email,
                 "date": commit.author_date,
-                "files": commit.files,
+                "files": f"{commit.files} modified files",
             }
             for commit in commits
         ]

@@ -12,9 +12,9 @@
         <!-- /.page-title -->
         <div class="container">
           <nav class="breadcrumb">
-            <a class="breadcrumb-item" href="#">Home</a>
-            <a class="breadcrumb-item" href="#">Branches</a>
-            <a class="breadcrumb-item" href="#">{{ source }}/{{ branch }}</a>
+            <a class="breadcrumb-item" href="/">Home</a>
+            <a class="breadcrumb-item" href="/branches/">Branches</a>
+            <a class="breadcrumb-item" :href="'/branches/' + source + '/' + branch">{{ source }}/{{ branch }}</a>
             <a class="breadcrumb-item active" href="#">{{ commit }}</a>
           </nav>
           <table class="table">
@@ -25,6 +25,7 @@
               <th scope="col">author</th>
               <th scope="col">email</th>
               <th scope="col">date</th>
+              <th scope="col">files</th>
             </tr>
             </thead>
             <tbody>
@@ -34,6 +35,7 @@
                 <td>{{details.author}}</td>
                 <td>{{details.email}}</td>
                 <td>{{details.date}}</td>
+                <td>{{details.files}}</td>
               </tr>
 
             </tbody>
