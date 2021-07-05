@@ -71,7 +71,6 @@
           dataType: "json",
           headers: {"Content-type": "application/json"}
         }).then(function (response) {
-          console.log(response.data);
           self.details = response.data;
         })
       }
