@@ -73,6 +73,7 @@
         })
       },
       closePullRequest: function (index) {
+        let item = this.pullrequests[index]
         const url = "/api/v1/pullrequests/" + item.pk + "/close/"
         let self = this;
         this.$axios.put(url, {
