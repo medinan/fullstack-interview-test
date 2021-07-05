@@ -13,7 +13,7 @@ services:
   api:
     build:
       context: ./
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.api
       target: dev
     image: flat/tests/backend/dev
     command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
@@ -44,7 +44,8 @@ services:
       - ./frontend:/home/frontend/
       - /home/frontend/node_modules
     working_dir: /home/frontend
-
+    depends_on:
+      - api
     tty: true
     stdin_open: true
 volumes:
