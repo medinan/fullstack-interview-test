@@ -44,8 +44,6 @@ services:
       - ./frontend:/home/frontend/
       - /home/frontend/node_modules
     working_dir: /home/frontend
-    depends_on:
-      - api
     tty: true
     stdin_open: true
 volumes:

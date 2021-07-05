@@ -11,6 +11,8 @@ Prueba tecnica Nestor Medina.
 El proyecto se levanta ejecutando docker-compose
 ```
 docker-compose build web
+docker-compose build api
+docker-compose up api
 docker-compose up web
 ```
 
