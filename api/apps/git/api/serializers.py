@@ -4,8 +4,8 @@ from ..models import PullRequest
 
 
 class BranchSerializer(serializers.Serializer):
+    source = serializers.CharField(max_length=100)
     name = serializers.CharField(max_length=100)
-    safe = serializers.CharField(max_length=100)
 
 
 class CommitSerializer(serializers.Serializer):
@@ -14,7 +14,7 @@ class CommitSerializer(serializers.Serializer):
     author = serializers.CharField(max_length=100)
     email = serializers.EmailField(max_length=100)
     date = serializers.DateTimeField()
-    files = serializers.IntegerField()
+    files = serializers.CharField(max_length=100)
 
 
 class BranchDetailSerializer(serializers.Serializer):
@@ -27,8 +27,11 @@ class PullRequestSerializer(serializers.ModelSerializer):
     class Meta:
         model = PullRequest
         fields = [
+            "pk",
             "title",
             "author",
+            "branch_base",
+            "branch_compare",
             "description",
             "status"
         ]

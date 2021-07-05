@@ -28,5 +28,24 @@ services:
       - postgres
     tty: true
     stdin_open: true
+
+  web:
+    build:
+      context: ./
+      dockerfile: Dockerfile.web
+      target: web
+    image: flat/tests/frontend/front
+    command: bash -c "yarn dev"
+    ports:
+      - 3000:3000
+    env_file:
+      - ./frontend/.env
+    volumes:
+      - ./frontend:/home/frontend/
+      - /home/frontend/node_modules
+    working_dir: /home/frontend
+
+    tty: true
+    stdin_open: true
 volumes:
   pgdata:
