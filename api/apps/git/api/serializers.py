@@ -27,6 +27,7 @@ class PullRequestSerializer(serializers.ModelSerializer):
     class Meta:
         model = PullRequest
         fields = [
+            "pk",
             "title",
             "author",
             "branch_base",

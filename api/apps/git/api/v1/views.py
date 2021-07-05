@@ -1,10 +1,7 @@
 from rest_framework import mixins
-from rest_framework import exceptions
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet, ViewSet
-
-from urllib import parse
 
 from ..mixins import GitMixin
 from ..serializers import BranchSerializer, BranchDetailSerializer, CommitSerializer, PullRequestSerializer
@@ -71,11 +68,7 @@ class PullRequestViewSet(mixins.CreateModelMixin, mixins.ListModelMixin, Generic
     @action(detail=True, methods=["put"])
     def close(self, request, pk=None):
         obj_instance = self.get_object()
-        if obj_instance.status is not PullRequest.StatusPullRequest.OPEN:
-            raise exceptions.ValidationError("the request cannot be closed as it is merged or closed")
         obj_instance.status = PullRequest.StatusPullRequest.CLOSED
         obj_instance.save()
         serializer = self.get_serializer(instance=obj_instance)
         return Response(serializer.data)
-
-

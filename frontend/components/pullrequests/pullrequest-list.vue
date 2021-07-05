@@ -29,12 +29,12 @@
             </tr>
             </thead>
             <tbody>
-              <tr v-for="pull in pullrequests">
+              <tr v-for="(pull, index) in pullrequests">
                 <td>{{pull.author}}</td>
                 <td>{{pull.title}}</td>
                 <td>{{pull.description}}</td>
                 <td>{{pull.status}}</td>
-                <td><button class="btn btn-primary pull-right" v-if="pull.status === 'open'">closed</button></td>
+                <td><button v-on:click="closePullRequest(index)" class="btn btn-primary pull-right" v-if="pull.status === 'open'">closed</button></td>
               </tr>
 
             </tbody>
@@ -71,6 +71,18 @@
         }).then(function (response) {
           console.log(response.data);
           self.pullrequests = response.data;
+        })
+      },
+      closePullRequest: function (index) {
+        let item = this.pullrequests[index]
+        const url = "/api/v1/pullrequests/" + item.pk + "/close/"
+        let self = this;
+        console.log(this.pullrequests[index]);
+        this.$axios.put(url, {
+          dataType: "json",
+          headers: {"Content-type": "application/json"}
+        }).then(function (response) {
+          self.getPullRequests();
         })
       }
     }
